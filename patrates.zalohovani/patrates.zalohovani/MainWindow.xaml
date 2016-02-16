@@ -1,0 +1,69 @@
+﻿<Window x:Class="patrates.zalohovani.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"        
+        xmlns:ignore="http://www.ignore.com"
+        mc:Ignorable="d ignore"
+        Height="600"
+        Width="450"
+        Title="Zalovahoni patRates Inc"
+        ResizeMode= "CanResize"
+        WindowStartupLocation="CenterScreen" 
+        DataContext="{Binding Main, Source={StaticResource Locator}}">
+    
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Skins/MainSkin.xaml"/>
+                <ResourceDictionary Source="Themes/BubbleCreme.xaml" />
+                
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+
+    <Grid x:Name="LayoutRoot" Background="{DynamicResource WindowBackgroundBrush}" MaxWidth="600" >
+
+        <Grid.Resources>
+            <ImageBrush x:Key="SettingButtonImageBrush" ImageSource="Resources/gear.jpg" Stretch="UniformToFill"/>
+            <ImageBrush x:Key="CloudsButtonImageBrush" ImageSource="Resources/Clouds.jpg" Stretch="UniformToFill"/>
+            
+        </Grid.Resources>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="70"></ColumnDefinition>
+			<ColumnDefinition Width="*"></ColumnDefinition>
+		</Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0"  Grid.Row="0" Margin="5" >
+            <Button  Width="60"
+                    Height="60"
+                    Command="{Binding settingsViewCommand}"
+                    
+                    Background="{StaticResource SettingButtonImageBrush}"
+                    />
+            <Button Width="60"
+                    Height="60"
+                    Command="{Binding restoreViewCommand}"
+                    
+                    Background="{StaticResource CloudsButtonImageBrush}"
+                     />
+					         </StackPanel>
+		
+		<ContentControl Grid.Column="1"	 Grid.Row="0" Content="{Binding CurrentViewModel}" />
+
+        <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right">
+            <Popup IsOpen="{Binding PopOpen}" PopupAnimation="Slide" AllowsTransparency="True"  PlacementTarget="{Binding ElementName=IconZalohovani}" 
+                            Placement="Bottom" Width="150"
+                                >
+                <StackPanel Orientation="Horizontal" Background="Gray">
+                    <TextBlock  Foreground="#FFFFFFFF" Padding="30,10,0,10"   Text="{Binding WelcomeTitle}"/>
+                </StackPanel>
+
+            </Popup>
+            <Image Name="IconZalohovani" Source="Resources/title.png"  Height="25"></Image>
+        </StackPanel>
+    </Grid>
+</Window>

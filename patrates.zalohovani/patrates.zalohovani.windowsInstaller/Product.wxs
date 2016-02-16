@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="*" Name="zalohovani - Installer" Language="1033" Version="1.0.2.0" Manufacturer="patRates Inc" UpgradeCode="804a9d74-87da-48ef-bf13-910b89cabd33">
+
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab ="yes" />
+
+		<Feature Id="ProductFeature" Title="Zalohovani by patRates Inc" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="ApplicationShortcut" /> 
+		</Feature>
+ 
+
+
+    <UIRef Id="WixUI_InstallDir" />
+    
+
+
+	</Product>
+
+	<Fragment>
+    
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="Zalohovani" />
+      
+			</Directory>
+       <!-- For Short Cuts -->
+      <Directory Id="ProgramMenuFolder">
+                <Directory Id="ApplicationProgramsFolder" Name="Zalohovani"/>
+      </Directory>
+		</Directory>
+     
+    <DirectoryRef Id="ApplicationProgramsFolder">
+            <Component Id="ApplicationShortcut" Guid="504B67B0-811E-45EC-BD5C-F696C9CFA920">
+                <Shortcut Id="ApplicationStartMenuShortcut" 
+                     Name="Zalohovani" 
+                   Description="A backup Solution"
+                    Target="[INSTALLFOLDER]patrates.zalohovani.exe"
+                          WorkingDirectory="INSTALLFOLDER"/>
+                <RemoveFolder Id="ApplicationProgramsFolder" On="uninstall"/>
+                <RegistryValue Root="HKCU" Key="Software\Microsoft\Zalohovani" Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+           </Component>
+    </DirectoryRef>
+
+    <Property Id="WIXUI_INSTALLDIR" Value="INSTALLFOLDER" />
+  
+  </Fragment>
+
+	<Fragment>
+    
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      
+			<Component Id="ProductComponent1" Guid="D8BB64DC-BAA8-4461-96EE-2F94E7958C48">
+				<File Id="patrates.zalohovani.exe" Name="patrates.zalohovani.exe" Source="..\patrates.zalohovani\bin\Release\patrates.zalohovani.exe" Vital="yes" KeyPath="yes" DiskId="1" />
+      </Component>
+      <Component Id="ProductComponent2" Guid="D45B8098-05A0-4E90-BE25-D7DF18624875">
+        <File Id="AWSSDK.dll" Name="AWSSDK.dll" Source="..\patrates.zalohovani\bin\Release\AWSSDK.dll" Vital="yes" KeyPath="yes" DiskId="1" />
+      </Component>
+      <Component Id="ProductComponent3" Guid="268E2E69-E876-4756-A9D1-4BBCD2E10CF1">
+        <File Id="GalaSoft.MvvmLight.dll" Name="GalaSoft.MvvmLight.dll" Source="..\patrates.zalohovani\bin\Release\GalaSoft.MvvmLight.dll" Vital="yes" KeyPath="yes" DiskId="1" />
+      </Component>
+      <Component Id="ProductComponent4" Guid="455E380A-8ADF-4430-A9B9-D62DDA76C692">      
+        <File Id="GalaSoft.MvvmLight.Extras.dll" Name="GalaSoft.MvvmLight.Extras.dll" Source="..\patrates.zalohovani\bin\Release\GalaSoft.MvvmLight.Extras.dll" Vital="yes" KeyPath="yes" DiskId="1" />
+       </Component>
+      <Component Id="ProductComponent5" Guid="3DB9BEED-AB8F-4604-80E5-2A9DCDE44C0C">        
+        <File Id="GalaSoft.MvvmLight.Platform.dll" Name="GalaSoft.MvvmLight.Platform.dll" Source="..\patrates.zalohovani\bin\Release\GalaSoft.MvvmLight.Platform.dll" Vital="yes" KeyPath="yes" DiskId="1" />
+      </Component>
+      <Component Id="ProductComponent6" Guid="82CD29B7-00DF-4E95-9B4F-A1027813AAC1">
+          <File Id="Microsoft.Practices.ServiceLocation.dll" Name="Microsoft.Practices.ServiceLocation.dll" Source="..\patrates.zalohovani\bin\Release\Microsoft.Practices.ServiceLocation.dll" Vital="yes" KeyPath="yes" DiskId="1" />
+      </Component>
+      <Component Id="ProductComponent7" Guid="9F56FE8D-6D63-4A4F-8C8D-331EE2BD99C9">
+        <File Id="patrates.zalohovani.amazonS3.dll" Name="patrates.zalohovani.amazonS3.dll" Source="..\patrates.zalohovani\bin\Release\patrates.zalohovani.amazonS3.dll" Vital="yes" KeyPath="yes" DiskId="1" />
+        </Component>
+      <Component Id="ProductComponent8" Guid="F2B29712-FFA3-41B7-B262-4DD04CB63058">
+        <File Id="patrates.zalohovani.commons.dll" Name="patrates.zalohovani.commons.dll" Source="..\patrates.zalohovani\bin\Release\patrates.zalohovani.commons.dll" Vital="yes" KeyPath="yes" DiskId="1" />
+        </Component>
+      <Component Id="ProductComponent9" Guid="C49F5F03-9D89-46EB-B96E-E7C1DA302B75">
+        <File Id="patrates.zalohovani.interfaces.dll" Name="patrates.zalohovani.interfaces.dll" Source="..\patrates.zalohovani\bin\Release\patrates.zalohovani.interfaces.dll" Vital="yes" KeyPath="yes" DiskId="1" />
+        </Component>
+      <Component Id="ProductComponent10" Guid="1897D10A-9B34-42E7-99F5-646EB1F4DFE0">
+        <File Id="patrates.zalohovani.models.dll" Name="patrates.zalohovani.models.dll" Source="..\patrates.zalohovani\bin\Release\patrates.zalohovani.models.dll" Vital="yes" KeyPath="yes" DiskId="1" />        
+      </Component> 
+      <Component Id="ProductComponent11" Guid="3C48AE22-7971-407A-BDCC-DF54DBE2504D">
+        <File Id="patrates.zalovohani.repository.dll" Name="patrates.zalovohani.repository.dll" Source="..\patrates.zalohovani\bin\Release\patrates.zalovohani.repository.dll" Vital="yes" KeyPath="yes" DiskId="1" />
+      </Component>     
+      <Component Id="ProductComponent12" Guid="55CCA4FD-4B23-4912-8BA4-4FE6290262EB">
+        <File Id="System.Windows.Interactivity.dll" Name="System.Windows.Interactivity.dll" Source="..\patrates.zalohovani\bin\Release\System.Windows.Interactivity.dll" Vital="yes" KeyPath="yes" DiskId="1" />        
+      </Component>    
+    
+    </ComponentGroup>
+  
+	</Fragment>
+
+</Wix>
