@@ -1,6 +1,8 @@
-Zalovohani -  WPF app to manage your cloud-based storage
 
-# Cloud Services Supported Amazon AWS
+# Zalovohani -  WPF app to manage your cloud-based storage
+
+Cloud Services Supported 
+1. Amazon AWS
 
 Future Plans
 
